@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::redirect('/', '/dashboard');
+
+// Dashboard
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.dashboard', ['type_menu' => 'dashboard']);
 });
