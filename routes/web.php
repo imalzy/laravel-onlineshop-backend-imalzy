@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/dashboard');
+// Route::redirect('/', '/dashboard');
 
 // Dashboard
 Route::get('/', function () {
-    return view('pages.dashboard', ['type_menu' => 'dashboard']);
+    return view('pages.auth.login', ['type_menu' => 'login']);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('home', function () {
+        return view('pages.dashboard', ['type_menu' => 'dashboard']);
+    })->name('home');
+
+    Route::resource('users', UserController::class);
 });
