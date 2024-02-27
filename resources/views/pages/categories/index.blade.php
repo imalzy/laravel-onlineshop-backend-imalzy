@@ -14,7 +14,7 @@
                 <h1>Users</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="/home">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Users</a></div>
+                    <div class="breadcrumb-item"><a href="#">Category</a></div>
                     <div class="breadcrumb-item">Table</div>
                 </div>
             </div>
@@ -36,11 +36,13 @@
                                         <option>Move to Pending</option>
                                         <option>Delete Pemanently</option>
                                     </select> --}}
-                                    <button type="button" class="btn btn-info" onclick="window.location='{{ URL::route('users.create'); }}'">Tambah User</button>
+                                    <button type="button" class="btn btn-info"
+                                        onclick="window.location='{{ URL::route('categories.create') }}'">Tambah
+                                        Kategori</button>
 
                                 </div>
                                 <div class="float-right">
-                                    <form method="GET" action="{{ route('users.index') }}">
+                                    <form method="GET" action="{{ route('categories.index') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="name">
                                             <div class="input-group-append">
@@ -58,28 +60,25 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">Nama</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Peran</th>
+                                                <th scope="col">Deskripsi</th>
                                                 <th scope="col">Tanggal Buat</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($users as $user)
+                                            @foreach ($categories as $item)
                                                 <tr>
-                                                    {{-- <th scope="row">{{ $loop->iteration }}</th> --}}
-                                                    <td>{{ $user->name }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->role }}</td>
-                                                    <td>{{ $user->created_at }}</td>
+                                                    <td>{{ $item->name }}</td>
+                                                    <td>{{ $item->description }}</td>
+                                                    <td>{{ $item->created_at }}</td>
                                                     <td>
                                                         <div class="d-flex align-items-center" style="gap: 8px">
-                                                            <a href="{{ route('users.edit', $user->id) }}"
+                                                            <a href="{{ route('categories.edit', $item->id) }}"
                                                                 class="btn btn-sm btn-info btn-icon">
                                                                 <i class="fas fa-edit"></i>
                                                                 Edit
                                                             </a>
-                                                            <form action="{{ route('users.destroy', $user->id) }}"
+                                                            {{-- <form action="{{ route('categories.destroy', $item->id) }}"
                                                                 method="POST" class="ml-2">
                                                                 <input type="hidden" name="_method" value="DELETE" />
                                                                 <input type="hidden" name="_token"
@@ -88,7 +87,7 @@
                                                                     class="btn btn-sm btn-danger btn-icon confirm-delete">
                                                                     <i class="fas fa-times"></i> Delete
                                                                 </button>
-                                                            </form>
+                                                            </form> --}}
                                                         </div>
 
                                                     </td>
@@ -97,9 +96,9 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="float-right">
-                                    {{ $users->withQueryString()->links() }}
-                                </div>
+                                {{-- <div class="float-right">
+                                    {{ $categories->withQueryString()->links() }}
+                                </div> --}}
                             </div>
                         </div>
                     </div>

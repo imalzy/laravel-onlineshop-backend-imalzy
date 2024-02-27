@@ -28,11 +28,11 @@
                 <h2 class="section-title">Users</h2>
 
                 <div class="card">
-                    <form action="{{ route('users.update', $user->id) }}" method="PUT">
+                    <form action="{{ route('users.update', $user->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
-                            <h4>Input Text</h4>
+                            <h4>User id {{ $user->id }}</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group">

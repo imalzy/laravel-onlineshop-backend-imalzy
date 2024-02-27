@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    //
+    // Get all users;
     public function index(Request $request)
     {
         // Get all users;
@@ -20,6 +20,7 @@ class UserController extends Controller
                 $query->where('name', 'like', '%' . $name . '%')->orWhere('email', 'like', '%' . $name . '%');
             }
         )->select('id', 'name', 'email', 'role', 'created_at', 'updated_at')->orderBy('id', 'desc')->paginate(10);
+
         return view('pages.users.index', compact('users'));
     }
 
