@@ -21,7 +21,7 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'error'
-            ]);
+            ], 500);
         }
     }
 }

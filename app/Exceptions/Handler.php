@@ -54,5 +54,11 @@ class Handler extends ExceptionHandler
                 'status' => '404',
             ], 404 );
         }
+
+        if($exception instanceof \Illuminate\Auth\AuthenticationException){
+            return response()->json([
+                'message' => 'Not authenticated'
+            ], 401);
+        }
     }
 }

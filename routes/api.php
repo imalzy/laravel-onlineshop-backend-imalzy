@@ -22,8 +22,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/categories', [CategoryController::class, 'index']);
+});
 
 
 Route::fallback(function () {
